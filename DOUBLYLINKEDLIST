@@ -1,4 +1,3 @@
-package java_placement_exercises;
 import java.util.*;
 public class dll {
 	Node head;
