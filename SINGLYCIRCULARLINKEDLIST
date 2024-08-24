@@ -1,0 +1,135 @@
+package java_placement_exercises;
+import java.util.*;
+public class cll {
+Node head;
+class Node{
+	int data;
+	Node next;
+	Node(int val){
+		data=val;
+		next=null;
+	}
+}
+public void insbeg(int k) {
+	Node newnode=new Node(k);
+	if(head==null){
+		
+		newnode.next=newnode;
+		head=newnode;
+	}
+	else {
+		newnode.next=head.next;
+		head.next=newnode;
+	}	}
+
+	public void insend(int k) {
+	Node newnode=new Node(k);
+	if(head==null) {
+		newnode.next=newnode;
+	head=newnode;}
+	
+	else {
+	newnode.next=head.next;
+	head.next=newnode;
+	head=newnode;
+	}
+}
+	public void inspos(int k,int y) {
+		Node newnode=new Node(k);
+		Node temp=head;
+		for(int i=1;i<y;i++) {
+			temp=temp.next;
+		}
+		newnode.next=temp.next;
+		temp.next=newnode;
+	}
+	public void delbeg() {
+		head.next=head.next.next;
+	}
+	public void delend() {
+		Node temp=head;
+		do {
+			temp=temp.next;
+		}while(temp.next!=head);
+		temp.next=head.next;
+		head=temp;
+	}
+	public void delpos(int k) {
+		Node temp=head;
+		Node cur=null;
+		for(int i=0;i<k;i++) {
+			cur=temp;
+			temp=temp.next;
+			
+		}
+		cur.next=temp.next;
+		temp=null;
+	}
+	public void sort() {
+		Node cur=head;
+		Node ind;
+		Node prev;
+		int temp;
+		do {
+			prev=cur;
+			for(ind=cur.next;ind!=head;ind=ind.next) {
+				if(cur.data>ind.data) {
+				temp=cur.data;
+				cur.data=ind.data;
+				ind.data=temp;
+				}
+			}cur=cur.next;
+		}while(cur!=head);
+	head=prev;}
+public void dis() {
+	Node temp=head.next;
+	do {
+		System.out.print(temp.data+"-->");
+		temp=temp.next;
+	}while(temp!=head.next);
+	System.out.print('\n');
+}
+cll(){
+	head=null;
+}
+	public static void main(String[] args) {
+		Scanner sc=new Scanner(System.in);
+		cll list=new cll();
+		 int k;
+	        do {
+	        	System.out.print("1.creation\n2.deletion\n3.insertion\n4.sort\n5.display");
+	        k=sc.nextInt();
+	        switch(k) {
+	        case 1:
+	        	int n = sc.nextInt(); 
+		        for(int i =0;i<n;i++){
+		            int val = sc.nextInt();
+		            list.insend(val);
+		        }break;
+	        case 2:
+	        	System.out.print("1.delbegin\n2.delend\n3.delpos");
+	        	int u=sc.nextInt();
+	        	switch(u) {
+	        	case 1:
+	        		list.delbeg();break;
+	        	case 2:list.delend();break;
+	        	case 3:int j=sc.nextInt();list.delpos(j);break;
+	        	}
+	        	break;
+	        case 3:
+	        	System.out.print("1.insbegin\n2.insend\n3.inspos");
+	        	int ru=sc.nextInt();
+	        	switch(ru) {
+	        	case 1:int p=sc.nextInt();list.insbeg(p);break;
+	        	case 2:int p1=sc.nextInt();list.insend(p1);break;
+	        	case 3:int p3=sc.nextInt(); int p2=sc.nextInt();list.inspos(p3,p2);break;
+	        	}
+	        	break;
+	        case 4:list.sort();break;
+	        
+	        case 5:list.dis();break;
+	        }
+	        }while(k!=-1);
+	}
+
+}
